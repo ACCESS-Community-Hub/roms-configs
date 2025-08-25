@@ -1,0 +1,45 @@
+## -- job submission
+model: roms
+jobname: roms_upwelling
+queue: express
+project: yj27
+memory: "15GB"
+walltime: "00:10:00"
+
+storage: 
+  - gdata/yj27
+  - scratch/yj27
+
+modules:
+  load:
+    - pbs
+    - netcdf/4.7.3
+    - openmpi/4.1.4
+    - intel-compiler/2021.8.0
+    - coastri-roms/pr1-5
+
+## -- model execution
+ncpus: 16
+
+mpi:
+  runcmd: mpirun
+  flags: -mca coll_ucc_enable 0
+
+## -- model configuration
+shorthpath: /scratch/yj27/pc3020/payu-upwelling/roms ## scratch path
+laboratory: /scratch/yj27/pc3020/payu-upwelling/roms
+# control: /g/data/yj27/pc3020/payu-upwelling/ctl
+
+name: upwelling
+model_config: roms_upwelling.in
+optional_config_files: varinfo.yaml
+# exe: /g/data/yj27/pc3020/spack/0.22/release/linux-rocky8-x86_64/intel-2021.8.0/ancoms-roms-4.2-qshh2xkc6q76twvvcwcmeqxlevg2gu6h/bin/romsM
+# exe: /g/data/vk83/prerelease/apps/spack/0.22/release/linux-rocky8-x86_64/intel-2021.8.0/ancoms-roms-4.2-vhnd3amgj5e3fm4eynvy6kvv4ucp4td3/bin/romsM
+exe: romsM
+
+# input: /g/data/yj27/pc3020/payu-upwelling/input
+
+## -- logging and archiving
+runlog: false
+collate: false
+archive: false
