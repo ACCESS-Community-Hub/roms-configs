@@ -25,6 +25,6 @@ optional_config_files: varinfo.yaml
 exe: romsM
 
 ## -- logging and archiving
-runlog: false
+runlog: true
 collate: false
-archive: false
+archive: true
