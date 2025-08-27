@@ -7,9 +7,9 @@ walltime: "00:10:00"
 
 modules:
   use:
-    - /g/data/vk83/prerelease/modules
+    - /g/data/vk83/modules
   load:
-    - coastri-roms/pr1-5
+    - coastri-roms/2025.06.000
 
 ## -- model execution
 ncpus: 2
