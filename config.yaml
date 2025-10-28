@@ -1,0 +1,44 @@
+## -- job submission
+model: roms
+jobname: dev_eac4km_barra-ecmwf
+queue: normal
+mem: 50GB
+walltime: 03:00:00
+ncpus: 48
+
+# modules:
+#   use:
+#     - /g/data/vk83/modules
+#   load:
+#     - coastri-roms/2025.06.000
+
+modules:
+  use:
+    - /home/005/pc3020/privatemodules/pyenv
+  load:
+    - roms
+    
+## -- model execution
+mpi:
+  runcmd: mpirun
+  flags: -mca coll_ucc_enable 0
+
+## -- model configuration
+name: dev_eac4km_barra-ecmwf
+model_config: roms.in
+optional_config_files: varinfo.yaml
+exe: /g/data/yj27/configs/roms/inputs/exe/ROMS3D_EAC
+input:
+- /g/data/yj27/configs/roms/inputs/grd/EACouter_varres_grd_mergedBLbry_uhroms.nc
+- /g/data/yj27/configs/roms/inputs/grd/eac_nud_stronger.nc
+- /g/data/yj27/configs/roms/inputs/ini/EAC_BRAN2020_1994Jan1_ini_his.nc
+- /g/data/yj27/configs/roms/inputs/bry/EAC_BRAN_bry_1994.nc
+- /g/data/yj27/configs/roms/inputs/frc/barraR_1994.nc 
+
+## -- logging and archiving
+runlog: true
+archive: true
+collate: false
+
+# restart: 
+#   /scratch/yj27/pc3020/roms/archive/roms_eac-20250909T00-611f9ebc/restart000
