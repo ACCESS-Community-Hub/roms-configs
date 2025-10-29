@@ -228,7 +228,7 @@ ad_VolCons(north) ==  T                            ! northern boundary
 
 ! Time-Stepping parameters.
 
-      NTIMES == 25920   ! 30 days
+      NTIMES == 25920   ! 25920=30days
           DT == 100.0d0
      NDTFAST == 35
 
@@ -258,17 +258,17 @@ ad_VolCons(north) ==  T                            ! northern boundary
 
        NRREC == 0
    LcycleRST == T
-        NRST == 25920 ! 30 days
-        NSTA == 0
-        NFLT == 0
-       NINFO == 0
+        NRST == 25920 ! 25920=30days (same as NTIMES)
+        NSTA == 1
+        NFLT == 1
+       NINFO == 1
 
 ! Output history, quicksave, average, and diagnostic files parameters.
 
      LDEFOUT == T
         NHIS == 108 ! 3 hourly          
      NDEFHIS == 0
-        NQCK == 108 ! 3 hourly   
+        NQCK == 0
      NDEFQCK == 0
       NTSAVG == 0
         NAVG == 864 ! 1 daily
@@ -417,7 +417,7 @@ LtracerSponge == T T                            ! temperature, salinity, inert
 
      THETA_S == 8.0d0                      ! surface stretching parameter
      THETA_B == 5.0d0                      ! bottom  stretching parameter
-      TCLINE == 400.0d0                     ! critical depth (m)
+      TCLINE == 400.0d0                    ! critical depth (m)
 
 ! Mean Density and Brunt-Vaisala frequency.
 
@@ -427,16 +427,18 @@ LtracerSponge == T T                            ! temperature, salinity, inert
 ! If tide generating forces, set switch (T/F) to apply a 18.6-year lunar
 ! nodal correction to equilibrium tide constituents.
 
-      Lnodal =  T
+      Lnodal =  F
 
 ! Time-stamp assigned for model initialization, reference time
 ! origin for tidal forcing, and model reference time for output
 ! NetCDF units attribute.
+
 ! startday_nextline
-DSTART == 4383.5
+      DSTART == 4383.5
+
 ! add line so tide start no deleted
-  TIDE_START =  0.0d0                      ! days
-    TIME_REF =  19900101.0d0                     ! yyyymmdd.dd
+      TIDE_START =  0.0d0                      ! days
+        TIME_REF =  19900101.0d0               ! yyyymmdd.dd
 
 ! Nudging/relaxation time scales, inverse scales will be computed
 ! internally, [1:Ngrids].
@@ -1055,10 +1057,10 @@ PIO_I2C_Preq = 65                 ! Maximum pending I2C requests
 
 ! Input NetCDF file names, [1:Ngrids].
 
-     GRDNAME == /g/data/fu5/eac/EACouter_varres_grd_mergedBLbry_uhroms.nc
-     ININAME == ini.nc
+     GRDNAME == EACouter_varres_grd_mergedBLbry_uhroms.nc
+     ININAME == EAC_BRAN2020_1994Jan1_ini_his.nc
      ITLNAME == roms_itl.nc
-     IRPNAME == irp.nc
+     IRPNAME == roms_irp.nc
      IADNAME == roms_iad.nc
      FWDNAME == roms_fwd.nc
      ADSNAME == roms_ads.nc
@@ -1072,21 +1074,21 @@ PIO_I2C_Preq = 65                 ! Maximum pending I2C requests
 ! s4dvar.in input script) will have the structure of a 4D-Var observation
 ! file.
 
-    FOInameA == wc13_foi_a.nc
-    FOInameB == wc13_foi_b.nc
+    FOInameA == roms_foi_a.nc
+    FOInameB == roms_foi_b.nc
 
 ! Input NetCDF filenames for the forecasts initialized from the analysis
 ! of the current 4D-Var cycle (FCTnameA) and initialized from the analysis
 ! of the previous 4D-Var cycle (FCTnameB).
 
-    FCTnameA == eac_fct_a.nc
-    FCTnameB == eac_fct_b.nc
+    FCTnameA == roms_fct_a.nc
+    FCTnameB == roms_fct_b.nc
 
 ! Nesting grids connectivity data: contact points information. This
 ! NetCDF file is special and complex. It is currently generated using
 ! the script "matlab/grid/contact.m" from the Matlab repository.
 
-     NGCNAME =  wc13_ngc.nc
+     NGCNAME =  roms_ngc.nc
 
 ! Input lateral boundary conditions file names. The USER has the option
 ! to separate the required lateral boundary variables into individual
@@ -1096,9 +1098,41 @@ PIO_I2C_Preq = 65                 ! Maximum pending I2C requests
 ! a single line per entry with a continuation (\) or a vertical bar (|)
 ! symbol after each entry, except the last one.
 
-    NBCFILES == 1                          ! number of boundary files
+    NBCFILES == 1  ! number of boundary files
 
-     BRYNAME == /g/data/dq12/cgk561/freerun_1993_2023_CK/BRAN/EAC_BRAN2020_bry.nc
+    BRYNAME == EAC_BRAN_bry_1994.nc |
+               EAC_BRAN_bry_1995.nc |
+               EAC_BRAN_bry_1996.nc |
+               EAC_BRAN_bry_1997.nc |
+               EAC_BRAN_bry_1998.nc |
+               EAC_BRAN_bry_1999.nc |
+               EAC_BRAN_bry_2000.nc |
+               EAC_BRAN_bry_2001.nc |
+               EAC_BRAN_bry_2002.nc |
+               EAC_BRAN_bry_2003.nc |
+               EAC_BRAN_bry_2004.nc |
+               EAC_BRAN_bry_2005.nc |
+               EAC_BRAN_bry_2006.nc |
+               EAC_BRAN_bry_2007.nc |
+               EAC_BRAN_bry_2008.nc |
+               EAC_BRAN_bry_2009.nc |
+               EAC_BRAN_bry_2010.nc |
+               EAC_BRAN_bry_2011.nc |
+               EAC_BRAN_bry_2012.nc |
+               EAC_BRAN_bry_2013.nc |
+               EAC_BRAN_bry_2014.nc |
+               EAC_BRAN_bry_2015.nc |
+               EAC_BRAN_bry_2016.nc |
+               EAC_BRAN_bry_2017.nc |
+               EAC_BRAN_bry_2018.nc |
+               EAC_BRAN_bry_2019.nc |
+               EAC_BRAN_bry_2020.nc |
+               EAC_BRAN_bry_2021.nc |
+               EAC_BRAN_bry_2022.nc |
+               EAC_BRAN_bry_2023.nc
+
+! NOTE: if any issues with MULTI-FILE settings see below:
+! https://www.myroms.org/forum/viewtopic.php?p=24224&hilit=multi+files#p24224
 
 ! Input climatology file names. The USER has the option to separate the
 ! climatology variables into individual NetCDF files (NCLMFILES > 1),
@@ -1108,21 +1142,50 @@ PIO_I2C_Preq = 65                 ! Maximum pending I2C requests
 ! continuation (\) or a vertical bar (|) symbol after each entry, except
 ! the last one.
 
-   NCLMFILES == 1                          ! number of climatology files
+   NCLMFILES == 1  ! number of climatology files
 
-    CLMNAME == /g/data/dq12/cgk561/freerun_1993_2023_CK/BRAN/EAC_BRAN2020_clim.nc
+   CLMNAME == EAC_BRAN_clim_1994.nc |
+              EAC_BRAN_clim_1995.nc |
+              EAC_BRAN_clim_1996.nc |
+              EAC_BRAN_clim_1997.nc |
+              EAC_BRAN_clim_1998.nc |
+              EAC_BRAN_clim_1999.nc |
+              EAC_BRAN_clim_2000.nc |
+              EAC_BRAN_clim_2001.nc |
+              EAC_BRAN_clim_2002.nc |
+              EAC_BRAN_clim_2003.nc |
+              EAC_BRAN_clim_2004.nc |
+              EAC_BRAN_clim_2005.nc |
+              EAC_BRAN_clim_2006.nc |
+              EAC_BRAN_clim_2007.nc |
+              EAC_BRAN_clim_2008.nc |
+              EAC_BRAN_clim_2009.nc |
+              EAC_BRAN_clim_2010.nc |
+              EAC_BRAN_clim_2011.nc |
+              EAC_BRAN_clim_2012.nc |
+              EAC_BRAN_clim_2013.nc |
+              EAC_BRAN_clim_2014.nc |
+              EAC_BRAN_clim_2015.nc |
+              EAC_BRAN_clim_2016.nc |
+              EAC_BRAN_clim_2017.nc |
+              EAC_BRAN_clim_2018.nc |
+              EAC_BRAN_clim_2019.nc |
+              EAC_BRAN_clim_2020.nc |
+              EAC_BRAN_clim_2021.nc |
+              EAC_BRAN_clim_2022.nc |
+              EAC_BRAN_clim_2023.nc
 
 ! Input climatology nudging coefficients file name.
 
-     NUDNAME == /scratch/fu5/cgk561/10year_run_insideEnKFreanalysis/eac_nud_stronger.nc
+     NUDNAME == eac_nud_stronger.nc
 
 ! Input Sources/Sinks forcing (like river runoff) file name.
 
-     SSFNAME == wc13_rivers.nc
+     SSFNAME == roms_rivers.nc
 
 ! Input tidal forcing file name.
 
-    TIDENAME == wc13_tides.nc
+    TIDENAME == roms_tides.nc
 
 ! Input forcing NetCDF file name(s).
 !
@@ -1142,26 +1205,54 @@ PIO_I2C_Preq = 65                 ! Maximum pending I2C requests
 ! continuation (\) or a vertical bar (|) symbol after each entry, except
 ! the last one.
 
-     NFFILES == 1                          ! number of unique forcing files
+     NFFILES == 1                         ! number of unique forcing files
 
-     FRCNAME == ./frc.nc
-!                /g/data/fu5/eac/fromScratch/assimilation_newV2017/access/qcorr_access_bluelink_2012_2013_adjustedaccess_expanded_newtimes.nc
+     FRCNAME == barraR_1994.nc |
+                barraR_1995.nc |
+                barraR_1996.nc |
+                barraR_1997.nc |
+                barraR_1998.nc |
+                barraR_1999.nc |
+                barraR_2000.nc |
+                barraR_2001.nc |
+                barraR_2002.nc |
+                barraR_2003.nc |
+                barraR_2004.nc |
+                barraR_2005.nc |
+                barraR_2006.nc |
+                barraR_2007.nc |
+                barraR_2008.nc |
+                barraR_2009.nc |
+                barraR_2010.nc |
+                barraR_2011.nc |
+                barraR_2012.nc |
+                barraR_2013.nc |
+                barraR_2014.nc |
+                barraR_2015.nc |
+                barraR_2016.nc |
+                barraR_2017.nc |
+                barraR_2018.nc |
+                barraR_2019.nc |
+                frc_EAC_ERA5_bulkflux_2020.nc |
+                frc_EAC_ERA5_bulkflux_2021.nc |
+                frc_EAC_ERA5_bulkflux_2022.nc |
+                frc_EAC_ERA5_bulkflux_2023.nc
 
 ! Output NetCDF file names, [1:Ngrids].
 
-     DAINAME == eac_dai.nc
-     GSTNAME == eac_gst.nc
-     RSTNAME == eac_rst.nc
-     HISNAME == eac_his.nc
-     QCKNAME == eac_qck.nc
-     TLMNAME == eac_tlm.nc
-     TLFNAME == eac_tlf.nc
-     ADJNAME == eac_adj.nc
-     AVGNAME == eac_avg.nc
-     HARNAME == eac_har.nc
-     DIANAME == eac_dia.nc
-     STANAME == eac_sta.nc
-     FLTNAME == eac_flt.nc
+     DAINAME == roms_dai.nc
+     GSTNAME == roms_gst.nc
+     RSTNAME == roms_rst.nc
+     HISNAME == roms_his.nc
+     QCKNAME == roms_qck.nc
+     TLMNAME == roms_tlm.nc
+     TLFNAME == roms_tlf.nc
+     ADJNAME == roms_adj.nc
+     AVGNAME == roms_avg.nc
+     HARNAME == roms_har.nc
+     DIANAME == roms_dia.nc
+     STANAME == roms_sta.nc
+     FLTNAME == roms_flt.nc
 
 ! Input ASCII parameter filenames.
 

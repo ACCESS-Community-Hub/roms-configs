@@ -1,8 +1,10 @@
+## payu_minimum_version: 1.1.7 # is the latest and roms drivers don't seem to be there yet - need for a new release e.g. 1.2.0?
+
 ## -- job submission
 model: roms
 jobname: dev_eac4km_barra-ecmwf
 queue: normal
-mem: 50GB
+mem: 80GB
 walltime: 03:00:00
 ncpus: 48
 
@@ -29,16 +31,24 @@ model_config: roms.in
 optional_config_files: varinfo.yaml
 exe: /g/data/yj27/configs/roms/inputs/exe/ROMS3D_EAC
 input:
-- /g/data/yj27/configs/roms/inputs/grd/EACouter_varres_grd_mergedBLbry_uhroms.nc
-- /g/data/yj27/configs/roms/inputs/grd/eac_nud_stronger.nc
-- /g/data/yj27/configs/roms/inputs/ini/EAC_BRAN2020_1994Jan1_ini_his.nc
-- /g/data/yj27/configs/roms/inputs/bry/EAC_BRAN_bry_1994.nc
-- /g/data/yj27/configs/roms/inputs/frc/barraR_1994.nc 
+  - /g/data/yj27/configs/roms/inputs/grd/EACouter_varres_grd_mergedBLbry_uhroms.nc
+  - /g/data/yj27/configs/roms/inputs/grd/eac_nud_stronger.nc
+  - /g/data/yj27/configs/roms/inputs/ini/EAC_BRAN2020_1994Jan1_ini_his.nc
+  - /g/data/yj27/configs/roms/inputs/clim ## all files within this directory
+  - /g/data/yj27/configs/roms/inputs/bry  ## all files within this directory
+  - /g/data/yj27/configs/roms/inputs/frc  ## all files within this directory
 
 ## -- logging and archiving
 runlog: true
 archive: true
 collate: false
 
-# restart: 
-#   /scratch/yj27/pc3020/roms/archive/roms_eac-20250909T00-611f9ebc/restart000
+userscripts:
+  archive: /usr/bin/bash /g/data/yj27/users/pc3020/source/access-community-hub/roms-configs/set_ininame_as_rstname.sh
+
+## Sync options for automatically copying data from ephemeral scratch space to longer term storage
+sync:
+    enable: True
+    restart: True
+    path: /g/data/yj27/users/pc3020/ancoms-roms/outputs/dev_eac4km_barra-ecmwf 
+    ## Set to a location on /g/data or a remote server and path (rsync syntax)
