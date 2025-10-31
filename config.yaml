@@ -42,13 +42,7 @@ input:
 runlog: true
 archive: true
 collate: false
+collate: false
 
 userscripts:
   archive: /usr/bin/bash /g/data/yj27/users/pc3020/source/access-community-hub/roms-configs/set_ininame_as_rstname.sh
-
-## Sync options for automatically copying data from ephemeral scratch space to longer term storage
-sync:
-    enable: True
-    restart: True
-    path: /g/data/yj27/users/pc3020/ancoms-roms/outputs/dev_eac4km_barra-ecmwf 
-    ## Set to a location on /g/data or a remote server and path (rsync syntax)
