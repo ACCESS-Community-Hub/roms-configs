@@ -16,7 +16,7 @@ ncpus: 48
 
 modules:
   use:
-    - /home/005/pc3020/privatemodules/pyenv
+    - /g/data/yj27/public/modules
   load:
     - roms
     
