@@ -9,7 +9,7 @@ modules:
   use:
     - /g/data/vk83/modules
   load:
-    - coastri-roms/2025.06.000
+    - coastri-roms/2026.03.000
 
 ## -- model execution
 ncpus: 2
