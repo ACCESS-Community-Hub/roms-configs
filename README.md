@@ -61,10 +61,10 @@ All configurations in this repository are open source, licensed under [CC BY 4.0
 
 The ROMS configurations in this repository can be run on [Gadi](https://opus.nci.org.au/spaces/Help/pages/90308778/0.+Welcome+to+Gadi#id-0.WelcometoGadi-Overview) through a [PBS job](https://opus.nci.org.au/display/Help/4.+PBS+Jobs) submission managed by *[payu](https://github.com/payu-org/payu)*.
 
-The general layout of a payu supported model run consists of two main directories:
+The general layout of a *payu* supported model run consists of two main directories:
 
 * The *control* directory which contains the model configuration and serves as the execution directory for running the model (in this example, the cloned directory `~/ancoms-roms/upwelling+testcase`).
-* The *laboratory* directory, where all the model components reside. This will typically be `/scratch/$PROJECT/$USER/ancoms-roms`. Payu automatically creates this directory when a model configuration is run.
+* The *laboratory* directory, where all the model components reside. This will typically be `/scratch/$PROJECT/$USER/ancoms-roms`. *Payu* automatically creates this directory when a model configuration is run.
 
 This separates the small text configuration files from the larger binary outputs and inputs. In this way, the control directory can be in the `$HOME` directory (as it is the only filesystem actively backed-up on Gadi). The quotas for `$HOME` are low and strict, which limits what can be stored there, so it is not suitable for larger files.
 
@@ -94,7 +94,7 @@ cd ~/ancoms-roms/
 payu clone -B release-upwelling+testcase https://github.com/ACCESS-Community-Hub/roms-configs.git upwelling+testcase
 cd upwelling+testcase
 ```
-In the example above, the `payu clone` command clones the latest release of the upwelling example (`-B release-upwelling+testcase`) to a directory named `upwelling+testcase` and creates a new experiment branch (`-b expt`). To run a different example, such as EAC configuration, then the payu clone command needs modifying to point to the different configuration:
+In the example above, the `payu clone` command clones the latest release of the upwelling example (`-B release-upwelling+testcase`) to a directory named `upwelling+testcase` and creates a new experiment branch (`-b expt`). To run a different example, such as EAC configuration, then the `payu clone` command needs modifying to point to the different configuration:
 ```
 payu clone -B dev-eac4km_barra-ecmwf https://github.com/ACCESS-Community-Hub/roms-configs.git eac4km_barra-ecmwf
 cd eac4km_barra-ecmwf
@@ -109,3 +109,8 @@ To run the cloned ROMS configuration, execute the following command from within 
 payu run
 ```
 This will submit a single job to the supercomputer "queue" with the run length specified in the configuration.
+
+## Running jobs Gadi
+The job should now be in the queue to run on *Gadi*.
+
+A quick *Gadi* reference guide which includes information on how to query the job status and delete jobs on can be found [here](https://opus.nci.org.au/spaces/Help/pages/90308861/Gadi+Quick+Reference+Guide)
