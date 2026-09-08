@@ -1,11 +1,31 @@
-# roms-configs
-A repository of input files for running ROMS configurations.
-Each branch contains files for a different configuration. 
+# Model configuration files for the Regional Ocean Modelling System (ROMS)
+**Note that the [main](https://github.com/ACCESS-Community-Hub/roms-configs) branch does not store any configuration, only some documentation**. 
+If you are looking to fork this repo, we suggest you fork all branches.
+This is a repository of input files for running different ROMS configurations.
+There are multiple configurations in this repository, with each unique configuration being stored on a seperate branch. 
 
-# Instructions for running
+# Running ROMS and the configurations in this repository
+## Introduction
+The regional ocean modelling system (ROMS) is an ocean model that can be configured from different regions. More information is available on the [ROMS website](https://www.myroms.org). Users are advised to sign up to the [ROMS modelling community](https://www.myroms.org/index.php?page=RomsCode) for support and development updates.
 
-## Initial setup
-You need an account on Gadi and to join these projects: yj27, vk83
+The instructions below outline how to run ROMS using ACCESS-NRI's deployed software, on on NCI's supercomputer Gadi.
+
+All configurations in this repository are open source, licensed under CC BY 4.0CC iconBY icon and available on ACCESS-Community-Hub on GitHub.
+
+## Prerequisites
+**NCI Account**
+
+Before running this ROMS workflow you need to [Set Up your NCI Account](https://docs.access-hive.org.au/getting_started/set_up_nci_account/)
+
+**Join NCI projects**
+
+Join the following projects by requesting membership on their respective NCI project pages:
+
+[yj27](https://my.nci.org.au/mancini/project/yj27)
+
+[vk83](https://my.nci.org.au/mancini/project/vk83)
+
+For more information on joining specific NCI projects, refer to [How to connect to a project](https://opus.nci.org.au/spaces/Help/pages/13141289/How+to+connect+to+a+project).
 
 ## Running the upwelling example
 From Gadi, you need to run these commands:
