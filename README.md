@@ -12,22 +12,33 @@ The instructions below outline how to run ROMS using ACCESS-NRI's deployed softw
 
 All configurations in this repository are open source, licensed under CC BY 4.0CC iconBY icon and available on ACCESS-Community-Hub on GitHub.
 
-## Prerequisites
-**NCI Account**
+# Prerequisites
+* **NCI Account**<br> 
+  Before running this ROMS workflow you need to [Set Up your NCI Account](https://docs.access-hive.org.au/getting_started/set_up_nci_account/)
 
-Before running this ROMS workflow you need to [Set Up your NCI Account](https://docs.access-hive.org.au/getting_started/set_up_nci_account/)
+* **Join NCI projects**<br> 
+  Join the following projects by requesting membership on their respective NCI project pages:
+  * [yj27](https://my.nci.org.au/mancini/project/yj27)
+  * [vk83](https://my.nci.org.au/mancini/project/vk83)
 
-**Join NCI projects**
+  For more information on joining specific NCI projects, refer to [How to connect to a project](https://opus.nci.org.au/spaces/Help/pages/13141289/How+to+connect+to+a+project).
 
-Join the following projects by requesting membership on their respective NCI project pages:
+* **Payu**<br>
+    [Payu][(https://github.com/payu-org/payu)] is a workflow management tool for running numerical models in supercomputing environments, for which there is extensive [documentation](https://payu.readthedocs.io/en/latest/).<br>
+    _Payu_ on _Gadi_ is available through a dedicated `conda` environment in the _vk83_ project.<br>
+    After joining the _vk83_ project, load the `payu` module:
+  ```
+  module use /g/data/vk83/modules
+  module load payu
+  ```
 
-[yj27](https://my.nci.org.au/mancini/project/yj27)
+    To check that _payu_ is available, run:
 
-[vk83](https://my.nci.org.au/mancini/project/vk83)
+  ```
+  payu --version
+  ```
 
-For more information on joining specific NCI projects, refer to [How to connect to a project](https://opus.nci.org.au/spaces/Help/pages/13141289/How+to+connect+to+a+project).
-
-## Running the upwelling example
+## Download and run a ROMS configuration on Gadi
 From Gadi, you need to run these commands:
 
 ```
